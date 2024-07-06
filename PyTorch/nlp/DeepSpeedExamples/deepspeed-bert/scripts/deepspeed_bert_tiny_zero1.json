@@ -1,0 +1,32 @@
+{
+  "steps_per_print": 100,
+  "train_batch_size": 1024,
+  "train_micro_batch_size_per_gpu": 32,
+  "prescale_gradients": true,
+  "gradient_clipping": 1.0,
+  "communication_data_type": "bf16",
+
+  "scheduler": {
+    "type": "WarmupDecayLR",
+    "params": {
+      "warmup_min_lr": 0.0001,
+      "warmup_max_lr": 0.001,
+      "warmup_num_steps": 1000,
+      "total_num_steps": 100000,
+      "warmup_type": "linear"
+    }
+  },
+  "wall_clock_breakdown": false,
+  "bf16": {"enabled": true},
+  "zero_optimization": {
+    "stage": 1,
+    "contiguous_gradients": false
+  },
+  "tensorboard": { "enabled": false },
+  "timers": {
+    "throughput": {
+      "enabled": true,
+      "synchronized": false
+    }
+  }
+}
